@@ -1,58 +1,69 @@
 package HerreraNoriega01TPA4;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class CompanyStores {
 
-    public Scanner input = new Scanner(System.in);
-    public Store[] myStores;
-    public Store locations = new Store();
+    Scanner input = new Scanner(System.in);
+    Store[] myStores;
+    int noOfStores;
+    String companyName;
+
 
     public CompanyStores() {
-
     }
 
 
     public void start() {
-        System.out.print("Do you want to track the sales performance of your store(s)? Enter 'Y' or 'N':");
-        try {
-            char result = (char) System.in.read();
-            System.out.println();
-            if (result == 'Y' || result == 'y') {
-                processStoreInfo();
-                displayStoreStats();
-                return;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.print("Thank you! Exiting Program.");
+        System.out.print("Do you want to track the sales performance of your store(s)? Enter 'Y' or 'N':  ");
+        char answer = input.nextLine().charAt(0);
+        if (Character.toUpperCase(answer) == 'Y') {
+            processStoreInfo();
+            displayStoreStats();
+        } else
+            System.out.print("Thank you! Exiting Program.");
     }
 
 
     public void processStoreInfo() {
-        System.out.print("What is the name of your company? ");
-        String companyName = input.next();
-
-        System.out.print("How many stores do you have? ");
-        int noOfStores = input.nextInt();
+        System.out.printf("%nWhat is the name of your company? ");
+        this.companyName = input.next();
+        System.out.printf("%nHow many stores do you have? ");
+        noOfStores = input.nextInt();
         myStores = new Store[noOfStores];
-
+        for (int i = 0; i < myStores.length; i++) {
+            int num = i + 1;
+            myStores[i] = new Store();
+            myStores[i].setStoreLctn(num);
+            myStores[i].setManager(num);
+            myStores[i].setTotalQtrlySales(num);
+            myStores[i].setProjectedAnnualSales(num);
+        }
     }
 
 
     public void displayStoreStats() {
-        double SalesDifference = 0.00;
+        double salesDifference;
         String message = "";
-        String report = "\n\nSALES FOR TANDEM AT ALL LOCATIONS";
-        locations.setStoreLctn(myStores);
-        locations.setManager(myStores);
-        locations.setTotalQtrlySales(myStores);
-        locations.setProjectedAnnualSales(myStores);
-        for (int i=0; i < myStores.length; i++) System.out.println("Store: " + locations.getStoreLctn());
+        String report = "%n%nSALES FOR TANDEM AT ALL LOCATIONS%n";
+        for (Store e : myStores) {
+            salesDifference = e.getTotalQtrlySales() - e.getProjectedAnnualSales();
+            if (salesDifference > 0) {
+                message = "KEEP UP THE GOOD WORK! Your store is ahead of your annual sales "
+                        + "projection are right on target.";
+            } else {
+                message = "WARNING! Your store sales are below annual projections.";
+            }
+            report += String.format(
+                    "%nStore:  TANDEM @%s"
+                            + "%nManger:  %s"
+                            + "%nProjected Annual Sales:  $%,.2f"
+                            + "%nTotal Quarterly Sales:  %,.2f"
+                            + "%nDifference:  $%,.2f"
+                            + "%nPerformance:  %s%n",
+                    e.getStoreLctn(), e.getManager(), e.getProjectedAnnualSales(), e.getTotalQtrlySales(), salesDifference, message);
 
-    }
-
-
+        }//END for
+        System.out.printf(report);
+    }//END displayStoreStats()
 }
