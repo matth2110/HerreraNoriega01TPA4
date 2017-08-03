@@ -21,32 +21,32 @@ public class Store {
 
 
     public void setManager(int num) {
-        System.out.printf("\nEnter the name of the manager for store %d:  ", num);
+        System.out.printf("%nEnter the name of the manager for store %d:  ", num);
         manager = input.nextLine();
     }
 
 
     public void setTotalQtrlySales(int num) {
-        System.out.printf("\nEnter the sales revenue for the 1st quarter of store %d:  ", num);
-        totalQtrlySales = input.nextDouble();
-        System.out.printf("\nEnter the sales revenue for the 2nd quarter of store %d:  ", num);
+        System.out.printf("%nEnter the sales revenue for the 1st quarter of store %d:  ", num);
         totalQtrlySales += input.nextDouble();
-        System.out.printf("\nEnter the sales revenue for the 3rd quarter of store %d:  ", num);
+        System.out.printf("%nEnter the sales revenue for the 2nd quarter of store %d:  ", num);
         totalQtrlySales += input.nextDouble();
-        System.out.printf("\nEnter the sales revenue for the 4th quarter of store %d:  ", num);
+        System.out.printf("%nEnter the sales revenue for the 3rd quarter of store %d:  ", num);
+        totalQtrlySales += input.nextDouble();
+        System.out.printf("%nEnter the sales revenue for the 4th quarter of store %d:  ", num);
         totalQtrlySales += input.nextDouble();
     }
 
 
     public void setProjectedAnnualSales(int num) {
-        System.out.printf("\nWhat is the projected annual sales for store %d: ", num);
+        System.out.printf("%nWhat is the projected annual sales for store %d: ", num);
         annualSales = input.nextDouble();
 
     }
 
 
     public void setStoreLctn(int num) {
-        System.out.printf("\nEnter the location for store %d:  ", num);
+        System.out.printf("%nEnter the location for store %d:  ", num);
         location = input.nextLine();
     }
 

@@ -46,8 +46,8 @@ public class CompanyStores {
         double salesDifference;
         String message = "";
         String report = "%n%nSALES FOR TANDEM AT ALL LOCATIONS%n";
-        for (Store e : myStores) {
-            salesDifference = e.getTotalQtrlySales() - e.getProjectedAnnualSales();
+        for (Store detail : myStores) {
+            salesDifference = detail.getTotalQtrlySales() - detail.getProjectedAnnualSales();
             if (salesDifference > 0) {
                 message = "KEEP UP THE GOOD WORK! Your store is ahead of your annual sales "
                         + "projection are right on target.";
@@ -61,7 +61,7 @@ public class CompanyStores {
                             + "%nTotal Quarterly Sales:  %,.2f"
                             + "%nDifference:  $%,.2f"
                             + "%nPerformance:  %s%n",
-                    e.getStoreLctn(), e.getManager(), e.getProjectedAnnualSales(), e.getTotalQtrlySales(), salesDifference, message);
+                    detail.getStoreLctn(), detail.getManager(), detail.getProjectedAnnualSales(), detail.getTotalQtrlySales(), salesDifference, message);
 
         }//END for
         System.out.printf(report);
